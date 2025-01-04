@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('images/home.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .nav-container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            display: flex;
+            padding: 10px 0;
+            justify-content: center;
+            gap: 110px; /* Space between buttons */
+            z-index: 1000;
+        }
+
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-container a:hover {
+            background-color: white;
+            color: #ff4500;
+        }
+
+        .button-container {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            margin-top: 150px; /* Adjust for navbar height */
+        }
+
+        .button-container h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .form-container {
+            width: 30%;
+            padding: 40px;
+            background: white;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease-in-out;
+            position: relative;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1e90ff;
+        }
+
+        form input {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #4682b4;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4500;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #ff6347;
+        }
+
+        .switch-link {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .switch-link a {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-container">
+        <a href="home.html">Home</a>
+        <a href="about2.html">About</a>
+        <a href="search.php">View Pass</a>
+        <a href="#" id="openRegisterModal">Login/Register</a>
+        <a href="ticket.php">View Ticket</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="button-container">
+        <h1>Welcome! to<br>Bus Pass Management System</h1>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="form-container">
+            <button class="close-btn" id="closeRegisterModal">&times;</button>
+            <h2>Register</h2>
+            <form action="register.php" method="POST" onsubmit="handleRegistration(event)">
+                <input type="text" name="full_name" placeholder="Enter Full Name" required>
+                <input type="email" name="email" placeholder="Enter Email" required>
+                <input type="password" name="password" placeholder="Enter Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <div class="switch-link">
+                Already registered? <a href="#" id="switchToLogin">Login</a>
+            </div>
+            <div class="switch-link">
+                If you're Admin? <a href="#" id="openAdminLogin">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="form-container">
+            <button class="close-btn" id="closeLoginModal">&times;</button>
+            <h2>Login</h2>
+            <form action="login.php" method="POST">
+                <input type="text" name="full_name" placeholder="Enter Full Name" required>
+                <input type="password" name="password" placeholder="Enter Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch-link">
+                New user? <a href="#" id="switchToRegister">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
+        <div class="form-container">
+            <button class="close-btn" id="closeAdminLoginModal">&times;</button>
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <input type="text" id="adminUsername" placeholder="Enter Username" required>
+                <input type="password" id="adminPassword" placeholder="Enter Password" required>
+                <button type="button" onclick="validateAdminLogin()">Login</button>
+            </form>
+            <div id="adminErrorMessage" class="error"></div>
+        </div>
+    </div>
+
+    <script>
+        const registerModal = document.getElementById('registerModal');
+        const loginModal = document.getElementById('loginModal');
+        const openRegisterModal = document.getElementById('openRegisterModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const adminLoginModal = document.getElementById('adminLoginModal');
+        const openAdminLogin = document.getElementById('openAdminLogin');
+        const closeAdminLoginModal = document.getElementById('closeAdminLoginModal');
+
+        openRegisterModal.addEventListener('click', () => {
+            registerModal.classList.add('active');
+        });
+
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+        });
+
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+
+        switchToLogin.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+
+        switchToRegister.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+
+        openAdminLogin.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+            adminLoginModal.classList.add('active');
+        });
+
+        closeAdminLoginModal.addEventListener('click', () => {
+            adminLoginModal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === registerModal) {
+                registerModal.classList.remove('active');
+            }
+            if (event.target === loginModal) {
+                loginModal.classList.remove('active');
+            }
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === adminLoginModal) {
+                adminLoginModal.classList.remove('active');
+            }
+        });
+
+        function handleRegistration(event) {
+            event.preventDefault(); // Prevent form submission to server temporarily
+            alert('Registration successful! Please login.');
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        }
+
+        function validateAdminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const adminErrorMessage = document.getElementById('adminErrorMessage');
+
+            if (username === "admin" && password === "12345") {
+                alert("Admin login successful!");
+                window.location.href = "admin_dashboard.html";
+                adminLoginModal.classList.remove('active');
+            } else {
+                adminErrorMessage.textContent = "Invalid username or password. Please try again.";
+            }
+        }
+    </script>
+</body>
+</html>

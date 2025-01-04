@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit Card Payment</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('images/admin.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-header {
+            background-color: #3498db;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .page-header nav {
+            margin-top: 10px;
+        }
+
+        .page-header a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .page-header a:hover {
+            color: #74ebd5;
+        }
+
+        .container {
+            background-color: white;
+            width: 800px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s;
+            margin-top: 80px; /* Adjusted for fixed header */
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-row .input-group {
+            width: 48%;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .pay-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .pay-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .pay-btn:active {
+            background-color: #2471a3;
+            transform: scale(0.98);
+        }
+
+        .advantages {
+            background-color: white;
+            padding: 20px;
+            width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        .advantages h3 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #3498db;
+        }
+
+        .advantages ul {
+            list-style-type: square;
+            padding-left:  20px;
+        }
+
+        .advantages li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .nav-container {
+            width: 100%;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 110px; /* Space between buttons */
+            z-index: 1000;
+        }
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-container a:hover {
+            background-color: white;
+            color: #ff4500;
+        }
+
+    </style>
+</head>
+<body>
+
+     
+     
+    <div class="nav-container">
+        <a href="pass_type.php">Pass Type</a>
+        <a href="user_status.php">Pass Status</a>
+    </div>
+    
+    <!-- Page Header -->
+
+    <!-- Payment Form Section -->
+    <div class="container">
+        <header>
+            <h2>Secure Debit Card Payment</h2>
+        </header>
+        <div class="input-group">
+            <label for="cardholder-name">Cardholder Name</label>
+            <input type="text" id="cardholder-name" placeholder="Name" required>
+        </div>
+        <div class="input-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" placeholder="0000 0000 0000" required>
+        </div>
+        <div class="input-row">
+            <div class="input-group">
+                <label for="expiry-date">MM/YY</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+            </div>
+            <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="number" id="cvv" placeholder="000" required>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="save-card">
+            <label for="save-card">Save my card for faster checkout</label>
+        </div>
+        <button class="pay-btn" onclick="completePayment()">Pay</button>
+    </div>
+
+    <!-- Advantages Section -->
+    <div class="advantages">
+        <h3>Advantages of Using Debit Cards</h3>
+        <ul>
+            <li>No risk of overspending as payments are directly linked to your bank balance.</li>
+            <li>Immediate deduction of funds ensures better control over finances.</li>
+            <li>Widely accepted for both online and in-store purchases.</li>
+            <li>No interest or debt accumulation, unlike credit cards.</li>
+            <li>Protection against unauthorized transactions via PIN or biometric verification.</li>
+            <li>Can be used to withdraw cash from ATMs worldwide.</li>
+            <li>Secure and convenient, especially for day-to-day transactions.</li>
+            <li>No annual or service fees typically associated with credit cards.</li>
+            <li>Real-time account balance updates for better financial awareness.</li>
+            <li>Often linked to reward programs like cashback or discounts on purchases.</li>
+        </ul>
+    </div>
+
+    <script>
+        function completePayment() {
+            const cardholderName = document.getElementById('cardholder-name').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Basic validation
+            if (!cardholderName || !cardNumber || !expiryDate || !cvv) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Validate card number format (simple check)
+            const cardNumberPattern = /^\d{4} \d{4} \d{4} \d{4}$/;
+            if (!cardNumberPattern.test(cardNumber)) {
+                alert("Please enter a valid card number in the format: 0000 0000 0000");
+                return;
+            }
+
+            // Validate expiry date format (MM/YY)
+            const expiryDatePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+            if (!expiryDatePattern.test(expiryDate)) {
+                alert("Please enter a valid expiry date in the format: MM/YY");
+                return;
+            }
+
+            // Validate CVV
+            if (cvv.length !== 3) {
+                alert("Please enter a valid CVV (3 digits).");
+                return;
+            }
+
+            alert("Thank you, your payment is successfully completed.");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Transfer Payment</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('images/admin.jpg') no-repeat center center fixed;
+            background-size: cover;
+
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-header {
+            background-color: #3498db;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            width: 800px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s;
+            margin-top: 80px; /* Adjusted for fixed header */
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .pay-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .pay-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .pay-btn:active {
+            background-color: #2471a3;
+            transform: scale(0.98);
+        }
+
+        .advantages {
+            background-color: white;
+            padding: 20px;
+            width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        .advantages h3 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #3498db;
+        }
+
+        .advantages ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .advantages li {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+        .nav-container {
+            width: 100%;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 110px; /* Space between buttons */
+            z-index: 1000;
+        }
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-container a:hover {
+            background-color: white;
+            color: #ff4500;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="pass_type.php">Pass Type</a>
+        <a href="user_status.php">Pass Status</a>
+    </div>
+
+    <!-- Page Header -->
+
+    <!-- Payment Form Section -->
+    <div class="container">
+        <div class="input-group">
+            <label for="account-number">Account Number</label>
+            <input type="number" id="account-number" placeholder="Enter your bank account number" required>
+        </div>
+        <div class="input-group">
+            <label for="ifsc-code">IFSC Code</label>
+            <input type="text" id="ifsc-code" placeholder="Enter your bank IFSC code" required>
+        </div>
+        <div class="input-group">
+            <label for="bank-name">Bank Name</label>
+            <input type="text" id="bank-name" placeholder="Enter your bank name" required>
+        </div>
+        <div class="input-group">
+            <label for="amount">Enter Amount</label>
+            <input type="number" id="amount" placeholder="Enter your Amount" required>
+        </div>
+        <button class="pay-btn" onclick="completeTransfer()">Transfer</button>
+    </div>
+
+    <!-- Advantages Section -->
+    <div class="advantages">
+        <h3>Advantages of Bank Transfer</h3>
+        <ul>
+            <li>Highly secure, with strong authentication methods.</li>
+            <li>Direct transfer from one bank account to another.</li>
+            <li>Ideal for large, high-value transactions.</li>
+            <li>No need for third-party payment apps or services.</li>
+            <li>Usually comes with low or no processing fees.</li>
+            <li>Reliable and widely accepted for domestic and international payments.</li>
+            <li>Clear records for both parties with complete transaction history.</li>
+            <li>Can be scheduled for recurring transfers.</li>
+            <li>Bank-level encryption for all transfers ensures safety.</li>
+            <li>Works seamlessly with traditional banking systems and apps.</li>
+        </ul>
+    </div>
+
+    <script>
+        function completeTransfer() {
+            const accountNumber = document.getElementById('account-number').value;
+            const ifscCode = document.getElementById('ifsc-code').value;
+            const bankName = document.getElementById('bank-name').value;
+            const amount = document.getElementById('amount').value;
+
+            // Basic validation
+            if (!accountNumber || !ifscCode || !bankName || !amount) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Validate amount
+            if (amount <= 0) {
+                alert("Please enter a valid amount.");
+                return;
+            }
+
+            alert("Thank you, your bank transfer is successfully completed.");
+        }
+    </script>
+
+</body>
+</html>
