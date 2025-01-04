@@ -43,14 +43,15 @@ The **Bus Pass Management System** is a web-based application that simplifies th
 
 ## Screenshots
 ### 1. User Dashboard
-![User Dashboard] (![Screenshot (740)](https://github.com/user-attachments/assets/968313fb-1e9f-4c63-8536-fd17b355e034)
+![Screenshot (740)](https://github.com/user-attachments/assets/968313fb-1e9f-4c63-8536-fd17b355e034)
 
 
 ### 2. Apply for a Bus Pass
-![Apply Pass](https://via.placeholder.com/600x300.png?text=Apply+Pass)
+![Screenshot (742)](https://github.com/user-attachments/assets/ce005b8c-9f1c-4482-a2bf-8d0755782a81)
+
 
 ### 3. Admin Dashboard
-![Admin Dashboard]![Screenshot (741)](https://github.com/user-attachments/assets/54a71a7c-8455-47bf-909e-88f3bbf12152)
+![Screenshot (741)](https://github.com/user-attachments/assets/54a71a7c-8455-47bf-909e-88f3bbf12152)
 
 
 ## Future Enhancements
