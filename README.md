@@ -39,7 +39,7 @@ The **Bus Pass Management System** is a web-based application that simplifies th
 
 3. **Default Admin Credentials**:
    - Username: `admin`
-   - Password: `admin123`
+   - Password: `12345`
 
 ## Screenshots
 ### 1. User Dashboard
